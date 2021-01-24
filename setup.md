@@ -22,7 +22,7 @@ setup
 1. download the [latest macos virtualbox version](https://download.virtualbox.org/virtualbox/6.1.18/VirtualBox-6.1.18-142142-OSX.dmg).
 1. submit virtualbox `.dmg` installer to [https://www.virustotal.com/gui/home/upload] to verify installer.
 1. run the virtualbox installer on the host.
-1. run the iso download and verification script `./bash/get_debian.sh`.
+1. run the iso download and verification script `$ ./bash/get_debian.sh`.
 1. if the script emits `**PASS**` at the end of it's output, continue.
 1. start virtualbox and create a new virtual machine with the verified iso.
     * target operating system and architecture: debian 64 bit
