@@ -3,7 +3,7 @@ void hw
 
 [r&d skills exercise #1](https://docs.google.com/document/d/1U1PTHOdcUMUCC1rkcZGMazNkQCOCfjCV8aRPjYLxLEg/edit?ts=60073946)
 
-![](https://en.wikipedia.org/wiki/Glider_(Conway's_Life)#/media/File:Animated_glider_emblem.gif)
+![](https://upload.wikimedia.org/wikipedia/commons/9/96/Animated_glider_emblem.gif)
 
 ## problem
 
