@@ -61,10 +61,12 @@ void hw
     1. add the admin user to the sudo group: `# /sbin/usermod -aG sudo ratmav`
     1. open the sudoers file: `# /sbin/visudo`
     1. add the folling to the sudoers file (n3):
+
         ```shell
         # passwordless sudo for admin user for all commands.
         ratmav ALL=(ALL) NOPASSWD: ALL
         ```
+
 1. restart the target: `# shutdown -r now`
 1. log back in as the admin user.
 1. confirm ssh is up and running: `$ sudo systemctl status sshd`
@@ -78,7 +80,18 @@ void hw
 1. ssh to target and add your public ssh key to the admin user's list of authorized keys (n5).
 1. confirm ssh key-based login from host to target.
 1. test ansible access: `$ ansible --inventory ./ansible/hosts.yml -m ping void-hw`
-1. reboot target.
+1. shutdown target.
+1. snapshot target (**be a shame if you couldn't fallback easily**):
+    * name: "clean ready"
+    * notes:
+
+        ```
+        admin user: ratmav
+        admin pass: password
+        ssh pubkey: ratmav@protonmail.com
+        ```
+
+1. boot target if you're ready to move on.
 
 #### workflow
 
@@ -103,7 +116,7 @@ _confirm target is running and accessbile via ssh keys._
 
 **n1**: this is a throwaway system and _should not_ have any sensitive data on it.
 
-**n2**: it might be interesting and useful to have some sort of kickstart script or whatever to automate the target os setup after the host resources are allocated and target boots initially for os installation.
+**n2**: it might be interesting and useful to have some sort of kickstart script or whatever to automate the target os setup after the host resources are allocated and target boots initially for os installation. for that matter, vargrant might actually be useful. docker...probably not since containers have the kernel abstracted away.
 
 **n3**: this is essentially making the admin user a second root, on a non-r&d system it's best to observe the principle of least privilege. however, muscle memory from prepending commands with `sudo` made the admin user worthwhile for me.
 
