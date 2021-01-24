@@ -18,3 +18,4 @@ scratch
 * https://dzone.com/articles/linux-kernel-module-programming-simplest-example
 * https://blog.sourcerer.io/writing-a-simple-linux-kernel-module-d9dc3762c234
 * https://sachithmuhandiram.medium.com/linux-kernel-module-programming-simplest-example-c45f2d1b32a7
+* https://github.com/torvalds/linux/blob/master/include/linux/module.h **THIS IS PROBABLY YOUR API REFERENCE**
