@@ -57,8 +57,8 @@ setup
     1. open the sudoers file: `# /sbin/visudo`
     1. add the folling to the sudoers file (n3):
         ```shell
-        # passwordless sudo for admin users for all commands.
-        ratmav ALL=(ALL:ALL) NOPASSWD: ALL
+        # passwordless sudo for admin user for all commands.
+        ratmav ALL=(ALL) NOPASSWD: ALL
         ```
 1. restart the target: `# shutdown -r now`
 1. log back in as the admin user.
@@ -73,6 +73,7 @@ setup
 1. ssh to target and add your public ssh key to the admin user's list of authorized keys (n5).
 1. confirm ssh key-based login from host to target.
 1. test ansible access: `$ ansible --inventory ./ansible/hosts.yml -m ping void-hw`
+1. reboot target.
 
 ## notes
 
