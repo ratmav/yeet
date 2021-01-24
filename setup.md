@@ -21,4 +21,11 @@ setup
 1. run the virtualbox installer on the host.
 1. run the iso download and verification script `./bash/get_debian.sh`.
 1. if the script emits `**PASS**` at the end of it's output, continue.
-1. start virtualbox and create a new virtual machine (2 cores, 4gb ram, 25gb disk should be comfortable on recent hardware, resize to what works best on your host).
+1. start virtualbox and create a new virtual machine with the verified iso.
+    * target operating system and architecture: debian 64 bit
+    * specs (salt to taste for your host):
+        * 2 cores
+        * 4gb memory
+        * 25gb disk
+1. start the virtual machine and select the verified 64 bit debian iso.
+    * macos' security settings may not be configured to allow oracle-signed executables to run. in this case, follow [these](howtogeek.com/658047/how-to-fix-virtualboxs-“kernel-driver-not-installed-rc-1908-error/) steps, **which require a reboot of the host**.
