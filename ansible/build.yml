@@ -1,0 +1,8 @@
+---
+- hosts: void-hw
+  tasks:
+    - name: update packages
+      apt:
+        name: "*"
+        state: latest
+      become: yes
