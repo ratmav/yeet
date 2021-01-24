@@ -39,3 +39,4 @@ setup
         * admin password: `root` (this is a throwaway system and _should not_ have any sensitive data on it.)
         * disks: "Guided - use entire disk"; "All files in one partition (recommended for new users)"
         * software selection: **SSH server, standard system utilities, and Debian desktop environment _ONLY_** (desktop in case you'd prefer to work directly on the host through the virtualbox graphical client.)
+    * _this is a good time to take a break; the debian package install will take a few minutes._
