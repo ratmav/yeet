@@ -6,3 +6,29 @@
         name: "*"
         state: latest
       become: yes
+
+    - name: install and update kernel development tools
+      shell: echo 'TODO - install and update kernel development tools'
+      register: tools
+
+    - name: build kernel module
+      shell: echo 'TODO - build kernel module'
+      register: build
+
+    - name: install kernel module
+      shell: echo 'TODO - install kernel module'
+      register: install
+
+    - name: reboot
+      shell: echo 'TODO - reboot'
+      register: reboot
+
+    # remind youself to do the things.
+    - debug:
+        var: tools.stdout_lines
+    - debug:
+        var: build.stdout_lines
+    - debug:
+        var: install.stdout_lines
+    - debug:
+        var: reboot.stdout_lines
