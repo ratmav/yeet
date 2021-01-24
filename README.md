@@ -5,14 +5,7 @@ void hw
 
 ![](https://upload.wikimedia.org/wikipedia/commons/9/96/Animated_glider_emblem.gif)
 
-## problem
-
-### low level system programming
-
 ### setup (n0)
-
-1. configure a local kernel development environment.
-1. install and configure a toolchain to allow compilation of linux kernel modules (lkm).
 
 #### platform details
 
@@ -21,6 +14,7 @@ void hw
     * packages:
       * [shellcheck](https://github.com/koalaman/shellcheck#how-to-use) - lint shell (bash) scripts: `brew install shellcheck`
       * [ansible](https://docs.ansible.com/ansible/latest/index.html) - run tasks on target: `brew install ansible`
+      * [task](https://taskfile.dev/#/) - run tasks on host, like gnu make: `brew install go-task/tap/go-task`
       * `./bash/get_debian.sh` dependencies
         * [wget](https://www.gnu.org/software/wget/manual/)
         * [gnupg](https://gnupg.org/documentation/manuals/gnupg/)
@@ -28,9 +22,7 @@ void hw
   * virtualization: [virtualbox](https://www.virtualbox.org/wiki/Documentation)
 * target: [debian](https://www.debian.org/doc/) v.10.7.0 (current as of january 24th, 2021)
 
-#### procedure
-
-##### host setup
+#### host setup
 
 1. download the [latest macos virtualbox version](https://download.virtualbox.org/virtualbox/6.1.18/VirtualBox-6.1.18-142142-OSX.dmg).
 1. submit virtualbox `.dmg` installer to [https://www.virustotal.com/gui/home/upload] to verify installer.
@@ -60,7 +52,7 @@ void hw
     * let the target boot
     * login as admin user
 
-##### target setup
+#### target setup
 
 **assumes host setup is complete and that you're logged into the target as the admin user.**
 
@@ -88,10 +80,18 @@ void hw
 1. test ansible access: `$ ansible --inventory ./ansible/hosts.yml -m ping void-hw`
 1. reboot target.
 
-### build
+#### workflow
 
-1. run the build playbook: `$ ./bash/build.sh`
-    * build playbook will:
+1. walk through the host setup steps.
+1. walk through the target setup steps.
+1. iterate on kernel module source.
+
+##### tasks
+
+_confirm target is running and accessbile via ssh keys._
+
+1. **build**: `$ task build`
+    * the build task will:
         * upgrade all system packages
         * install and upgrade kernel development tools
         * build kernel module (stored on host) on target
