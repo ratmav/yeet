@@ -1,12 +1,17 @@
 version: '3'
 
 tasks:
-  get_debian:
-    cmds:
-      - ./bash/get_debian.sh
-
   build:
     cmds:
       - ansible-playbook --inventory ./ansible/hosts.yml -l void-hw ./ansible/build.yml
     silent: true
-    sources:
+
+  get_debian:
+    cmds:
+      - ./bash/get_debian.sh
+    silent: true
+
+  reset_target:
+    cmds:
+      - ./bash/reset_target.sh
+    silent: true

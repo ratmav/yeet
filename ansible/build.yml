@@ -34,15 +34,13 @@
         chdir: ~/src
 
     - name: install kernel module
-      shell: echo 'TODO - install kernel module'
-      register: install
+      shell: insmod void_hw.ko
+      args:
+        chdir: /home/ratmav/src
+      become: yes
+
+    # TODO: load mod on reboot.
 
     - name: reboot
-      shell: echo 'TODO - reboot'
-      register: reboot
-
-    # remind youself to do the things.
-    - debug:
-        var: install.stdout_lines
-    - debug:
-        var: reboot.stdout_lines
+      reboot:
+      become: yes

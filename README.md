@@ -15,10 +15,11 @@ void hw
       * [shellcheck](https://github.com/koalaman/shellcheck#how-to-use) - lint shell (bash) scripts: `brew install shellcheck`
       * [ansible](https://docs.ansible.com/ansible/latest/index.html) - run tasks on target: `brew install ansible`
       * [task](https://taskfile.dev/#/) - run tasks on host, like gnu make: `brew install go-task/tap/go-task`
-      * `./bash/get_debian.sh` dependencies
+      * `./bash/get_debian.sh` dependencies (`brew install $PACKAGE`)
         * [wget](https://www.gnu.org/software/wget/manual/)
         * [gnupg](https://gnupg.org/documentation/manuals/gnupg/)
         * [grep](https://www.gnu.org/software/grep/manual/)
+        * [nmap](https://nmap.org/book/man.html)
   * virtualization: [virtualbox](https://www.virtualbox.org/wiki/Documentation)
 * target: [debian](https://www.debian.org/doc/) v.10.7.0 (current as of january 24th, 2021)
 
