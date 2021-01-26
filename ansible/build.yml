@@ -7,9 +7,25 @@
         state: latest
       become: yes
 
-    - name: install and update kernel development tools
-      shell: echo 'TODO - install and update kernel development tools'
-      register: tools
+    - name: update development tools
+      apt:
+        name: build-essential
+        state: latest
+      become: yes
+
+    - name: get kernel version
+      shell: uname -r
+      register: kernel
+
+    - name: install kernel headers
+      apt:
+        name: "linux-headers-{{ kernel.stdout_lines[0] }}"
+        state: latest
+      become: yes
+
+    - name: copy kernel module
+      shell: echo 'TODO - copy kernel module'
+      register: copy
 
     - name: build kernel module
       shell: echo 'TODO - build kernel module'
@@ -25,7 +41,7 @@
 
     # remind youself to do the things.
     - debug:
-        var: tools.stdout_lines
+        var: copy.stdout_lines
     - debug:
         var: build.stdout_lines
     - debug:

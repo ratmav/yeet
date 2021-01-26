@@ -105,10 +105,14 @@ _confirm target is running and accessbile via ssh keys._
 
 1. **build**: `$ task build`
     * the build task will:
-        * upgrade all system packages
-        * install and upgrade kernel development tools
-        * build kernel module (stored on host) on target
-        * install kernel module
+        * upgrade
+            * all system packages
+            * development tools
+            * kernel headers
+        * copy source from host to target
+        * build source on target
+        * install module on target
+        * reboot target
 
 ## notes
 
