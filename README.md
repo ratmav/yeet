@@ -104,16 +104,30 @@ void hw
 
 _confirm target is running and accessbile via ssh keys._
 
-1. **build**: `$ task build`
-    * the build task will:
-        * upgrade
-            * all system packages
-            * development tools
-            * kernel headers
-        * copy source from host to target
-        * build source on target
-        * install module on target
-        * reboot target
+* **build**: `$ task build`
+    1. run the **reset_target** task
+    1. upgrade
+        * all system packages
+        * development tools
+        * kernel headers
+    1. copy source from host to target
+    1. build source on target
+    1. install module on target
+    1. reboot target
+* **default**: `$ task`
+    * convenience wrapper; will run the **build** task.
+* **get_debian**: `$ task get_debian`
+    1. download a debian v10.7.0 iso
+    1. download checksums
+    1. download pgp signature
+    1. import debian signing key
+    1. verify pgp signature
+    1. confirm iso checksum
+* **reset_target**: `$ task reset_target`
+    1. stop target
+    1. restore "clean ready" snapshot (see target setup)
+    1. start target
+    1. wait for ssh to come up on target
 
 ## notes
 

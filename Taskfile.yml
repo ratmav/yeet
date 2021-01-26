@@ -2,8 +2,13 @@ version: '3'
 
 tasks:
   build:
+    deps: [reset_target]
     cmds:
       - ansible-playbook --inventory ./ansible/hosts.yml -l void-hw ./ansible/build.yml
+    silent: true
+
+  default:
+    deps: [build]
     silent: true
 
   get_debian:
