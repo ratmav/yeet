@@ -61,5 +61,3 @@
     - name: reboot
       reboot:
       become: yes
-
-    # TODO: test by grepping dmesg for the yeet.

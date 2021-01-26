@@ -8,7 +8,7 @@ tasks:
     silent: true
 
   default:
-    deps: [build]
+    deps: [test]
     silent: true
 
   get_debian:
@@ -23,6 +23,7 @@ tasks:
 
   # TODO: make default, do build as a dep.
   test:
+    deps: [build]
     cmds:
       - ansible-playbook --inventory ./ansible/hosts.yml -l void-hw ./ansible/test.yml
     silent: true

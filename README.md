@@ -28,8 +28,8 @@ void hw
 1. download the [latest macos virtualbox version](https://download.virtualbox.org/virtualbox/6.1.18/VirtualBox-6.1.18-142142-OSX.dmg).
 1. submit virtualbox `.dmg` installer to [https://www.virustotal.com/gui/home/upload] to verify installer.
 1. run the virtualbox installer on the host.
-1. run the iso download and verification script `$ ./bash/get_debian.sh`.
-1. if the script emits `**PASS**` at the end of it's output, continue.
+1. run the iso download and verification script `$ task get_debian`.
+1. if the task emits `**PASS**` at the end of it's output, continue.
 1. start virtualbox and create a new virtual machine with the verified iso.
     * target operating system and architecture: debian 64 bit
     * specs (salt to taste for your host):
@@ -53,12 +53,12 @@ void hw
     * let the target boot
     * login as admin user
 
-#### target setup
+#### target setup (n1)
 
 **assumes host setup is complete and that you're logged into the target as the admin user.**
 
 1. open a terminal and elevate to root: `$ su`
-1. give the admin user sudo privileges (n1):
+1. give the admin user sudo privileges (n2):
     1. add the admin user to the sudo group: `# /sbin/usermod -aG sudo ratmav`
     1. open the sudoers file: `# /sbin/visudo`
     1. add the folling to the sudoers file (n3):
@@ -78,7 +78,7 @@ void hw
 1. start the target system and log in as the admin user.
 1. ping google to confirm network access: `$ ping google.com`
 1. confirm ssh access **from host**: `$ ssh ratmav@void-hw`
-1. ssh to target and add your public ssh key to the admin user's list of authorized keys (n5).
+1. ssh to target and add your public ssh key to the admin user's list of authorized keys (n4).
 1. confirm ssh key-based login from host to target.
 1. test ansible access: `$ ansible --inventory ./ansible/hosts.yml -m ping void-hw`
 1. shutdown target.
@@ -105,7 +105,7 @@ void hw
 _confirm target is running and accessbile via ssh keys._
 
 * **build**: `$ task build`
-    1. run the **reset_target** task (n6)
+    1. run the **reset_target** task
     1. upgrade
         * all system packages
         * development tools
@@ -115,7 +115,7 @@ _confirm target is running and accessbile via ssh keys._
     1. install module on target
     1. reboot target
 * **default**: `$ task`
-    * convenience wrapper; will run the **build** task.
+    * convenience wrapper; will run the **test** task.
 * **get_debian**: `$ task get_debian`
     1. download a debian v10.7.0 iso
     1. download checksums
@@ -123,24 +123,25 @@ _confirm target is running and accessbile via ssh keys._
     1. import debian signing key
     1. verify pgp signature
     1. confirm iso checksum
-* **reset_target**: `$ task reset_target`
+* **reset_target**: `$ task reset_target` (n5)
     1. stop target
     1. restore "clean ready" snapshot (see target setup)
     1. start target
     1. wait for ssh to come up on target
+* **test**: `$ task test`
+    1. run the **build** task
+    1. check for module messages on target via `dmesg`
 
 ## notes
 
 **n0**: **r&d and mvp code very often isn't, and doesn't need to be, production ready**: this work just gives me a springboard for other projects and it was honestly fun to make. business priorities dictate how much time anyone should spend on this kind of thing (but you're probably better off in the future to make the effort asap).
 
-**n1**: this is a throwaway system and _should not_ have any sensitive data on it.
+**n1**: we can probably automate most of the target setup with vagrant.
 
-**n2**: it might be interesting and useful to have some sort of kickstart script or whatever to automate the target os setup after the host resources are allocated and target boots initially for os installation. for that matter, vargrant might actually be useful. docker...probably not since containers have the kernel abstracted away.
+**n2**: this is a throwaway system and _should not_ have any sensitive data on it.
 
 **n3**: this is essentially making the admin user a second root, on a non-r&d system it's best to observe the principle of least privilege. however, muscle memory from prepending commands with `sudo` made the admin user worthwhile for me.
 
-**n4**: can probably use ansible to automate target setup steps 1-10 with tasks running on the host and then the target.
+**n4**: at this point, you should be able to start the target in headless mode with virtualbox and work over ssh if you'd like.
 
-**n5**: at this point, you should be able to start the target in headless mode with virtualbox and work over ssh if you'd like.
-
-**n6**: i got the a "hello, world"-level kernel mod to build and install, however rebuilding and reloading the module on the fly became tricky with `modprobe`. as i researched the issue, i discovered that things like bios settings, etc. may have an impact, so i opted to punt and simply automate restoring the entire vm to a clean ready state via a snapshot as part of the build process. it'd be worth figuring out if there's better way to do that; i took a sledgehammer to it. that said, the sledgehammer works.
+**n5**: i got the a "hello, world"-level kernel mod to build and install, however rebuilding and reloading the module on the fly became tricky with `modprobe`. as i researched the issue, i discovered that things like bios settings, etc. may have an impact, so i opted to punt and simply automate restoring the entire vm to a clean ready state via a snapshot as part of the build process. it'd be worth figuring out if there's better way to do that; i took a sledgehammer to it. that said, the sledgehammer works.
