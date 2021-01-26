@@ -1,0 +1,17 @@
+---
+- hosts: void-hw
+  tasks:
+    - name: check dmesg
+      shell: dmesg | grep -q yeet
+      become: yes
+      register: test
+
+    - name: notify pass
+      debug:
+        msg: "PASS: module writing to system messages!"
+      when: not test.failed
+
+    - name: notify fail
+      debug:
+        msg: "FAIL: no module messages found via dmesg"
+      when: test.failed

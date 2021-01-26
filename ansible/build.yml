@@ -28,19 +28,38 @@
         src: ../src
         dest: ~/
 
-    - name: build kernel module
+    - name: build module
       ansible.builtin.shell: make
       args:
         chdir: ~/src
 
-    - name: install kernel module
+      # TODO: necessary w/ reboot?
+    - name: insert  module
       shell: insmod void_hw.ko
       args:
         chdir: /home/ratmav/src
       become: yes
 
-    # TODO: load mod on reboot.
+    - name: copy module to lib
+      copy:
+        src: /home/ratmav/src/void_hw.ko
+        dest: "/lib/modules/{{ kernel.stdout_lines[0] }}"
+        remote_src: yes
+      become: yes
+
+    - name: add module to list
+      lineinfile:
+        path: /etc/modules
+        line: void_hw
+        create: yes
+      become: yes
+
+    - name: update module dependencies
+      command: depmod
+      become: yes
 
     - name: reboot
       reboot:
       become: yes
+
+    # TODO: test by grepping dmesg for the yeet.

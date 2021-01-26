@@ -20,3 +20,9 @@ tasks:
     cmds:
       - ./bash/reset_target.sh
     silent: true
+
+  # TODO: make default, do build as a dep.
+  test:
+    cmds:
+      - ansible-playbook --inventory ./ansible/hosts.yml -l void-hw ./ansible/test.yml
+    silent: true
