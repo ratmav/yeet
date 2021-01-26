@@ -23,9 +23,10 @@
         state: latest
       become: yes
 
-    - name: copy kernel module
-      shell: echo 'TODO - copy kernel module'
-      register: copy
+    - name: copy source
+      copy:
+        src: ../src
+        dest: ~/
 
     - name: build kernel module
       shell: echo 'TODO - build kernel module'
@@ -40,8 +41,6 @@
       register: reboot
 
     # remind youself to do the things.
-    - debug:
-        var: copy.stdout_lines
     - debug:
         var: build.stdout_lines
     - debug:
