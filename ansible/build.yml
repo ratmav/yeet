@@ -29,8 +29,9 @@
         dest: ~/
 
     - name: build kernel module
-      shell: echo 'TODO - build kernel module'
-      register: build
+      ansible.builtin.shell: make
+      args:
+        chdir: ~/src
 
     - name: install kernel module
       shell: echo 'TODO - install kernel module'
@@ -41,8 +42,6 @@
       register: reboot
 
     # remind youself to do the things.
-    - debug:
-        var: build.stdout_lines
     - debug:
         var: install.stdout_lines
     - debug:
