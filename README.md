@@ -105,7 +105,7 @@ void hw
 _confirm target is running and accessbile via ssh keys._
 
 * **build**: `$ task build`
-    1. run the **reset_target** task
+    1. run the **reset_target** task (n6)
     1. upgrade
         * all system packages
         * development tools
@@ -142,3 +142,5 @@ _confirm target is running and accessbile via ssh keys._
 **n4**: can probably use ansible to automate target setup steps 1-10 with tasks running on the host and then the target.
 
 **n5**: at this point, you should be able to start the target in headless mode with virtualbox and work over ssh if you'd like.
+
+**n6**: i got the a "hello, world"-level kernel mod to build and install, however rebuilding and reloading the module on the fly became tricky with `modprobe`. as i researched the issue, i discovered that things like bios settings, etc. may have an impact, so i opted to punt and simply automate restoring the entire vm to a clean ready state via a snapshot as part of the build process. it'd be worth figuring out if there's better way to do that; i took a sledgehammer to it. that said, the sledgehammer works.
