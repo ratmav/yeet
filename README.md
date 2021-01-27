@@ -132,9 +132,17 @@ _confirm target is running and accessbile via ssh keys._
     1. run the **build** task
     1. check for module messages on target via `dmesg`
 
+## module implementation
+
+i had to do a little research along the way to learn about the linux kernel and how modules work:
+
+* kernel modules are written to be executed asynchronously and non-blocking, akin to node.js. the reason for this is that since the kernel ties harware to userspace, kernel modules and device drivers listen for interrupts from character devices (e.g. audio, keyboards, etc.) and block devices (pretty much disks), then process those interrupts accordingly. there are magic methods that essentially are hooks for stuff like module init, exit, and cleanup.
+* the c stdlib is for userspace, which makes sense. kernel modules work on ring 0, which is pretty much all root all the time, so you have to be extremely careful and write the most robust code possible. this means i can't just import the stdlib headers and loop in a main. however, there are kernel "stdlib" headers i can use; i just need to study them enough to solve the hw problem.
+* kthreads are neat: i can essentially just spawn a thread at the kernel level and pass a pointer to whatever function i want as the entrypoint. this is pretty similar to other languages i've used, but it's really cool to hang out in ring 0.
+
 ## notes
 
-**n0**: **r&d and mvp code very often isn't, and doesn't need to be, production ready**: this work just gives me a springboard for other projects and it was honestly fun to make. business priorities dictate how much time anyone should spend on this kind of thing (but you're probably better off in the future to make the effort asap).
+**n0**: **r&d and mvp code very often isn't, and doesn't need to be, production ready.** i put in the effort b/c i wanted a good development harness for this and other tasks.
 
 **n1**: we can probably automate most of the target setup with vagrant.
 
