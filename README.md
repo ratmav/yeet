@@ -114,8 +114,8 @@ _confirm target is running and accessbile via ssh keys._
     1. build source on target
     1. install module on target
     1. reboot target
-* **default**: `$ task`
-    * convenience wrapper; will run the **test** task.
+* **default** (convenience wrapper): `$ task`
+    1. run the **shutdown_target** task
 * **get_debian**: `$ task get_debian`
     1. download a debian v10.7.0 iso
     1. download checksums
@@ -128,6 +128,9 @@ _confirm target is running and accessbile via ssh keys._
     1. restore "clean ready" snapshot (see target setup)
     1. start target
     1. wait for ssh to come up on target
+* **shutdown_target**: `$ task shutdown_target`
+    1. run the **test** task
+    1. stop target
 * **test**: `$ task test`
     1. run the **build** task
     1. check for module messages on target via `dmesg`
