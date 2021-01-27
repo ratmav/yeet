@@ -20,13 +20,14 @@ static int yeet(void *arg) {
 }
 
 static int __init yeet_init(void) {
- printk(KERN_INFO "preparing to yeet.\n");
- task = kthread_run(yeet, NULL, "yeet_thread");
- return 0;
+  printk(KERN_INFO "preparing to yeet.\n");
+  task = kthread_run(yeet, NULL, "yeet_thread");
+  return 0;
 }
 
 static void __exit yeet_exit(void) {
- printk(KERN_INFO "yeeting complete.\n");
+  kthread_stop(task);
+  printk(KERN_INFO "yeeting complete.\n");
 }
 
 module_init(yeet_init);
