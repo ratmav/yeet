@@ -8,7 +8,7 @@ tasks:
     silent: true
 
   default:
-    deps: [test]
+    deps: [shutdown_target]
     silent: true
 
   get_debian:
@@ -19,6 +19,12 @@ tasks:
   reset_target:
     cmds:
       - ./bash/reset_target.sh
+    silent: true
+
+  shutdown_target:
+    deps: [test]
+    cmds:
+      - VBoxManage controlvm void-hw acpipowerbutton
     silent: true
 
   test:

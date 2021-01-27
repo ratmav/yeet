@@ -1,17 +1,54 @@
 ---
 - hosts: void-hw
   tasks:
-    - name: check dmesg
-      shell: dmesg | grep -q yeet
+    # initialization test
+    - name: check init
+      shell: dmesg | grep -q "preparing to yeet."
       become: yes
-      register: test
+      register: check_init
 
-    - name: notify pass
+    - name: notify init pass
       debug:
-        msg: "PASS: module writing to system messages!"
-      when: not test.failed
+        msg: "PASS: module initializes!"
+      when: not check_init.failed
 
-    - name: notify fail
+    - name: notify init fail
       debug:
-        msg: "FAIL: no module messages found via dmesg"
-      when: test.failed
+        msg: "FAIL: module failed to initialize"
+      when: check_init.failed
+
+    # task test
+    - name: check task
+      shell: dmesg | grep -q "(╯°□°）╯︵ ┻━┻"
+      become: yes
+      register: check_task
+
+    - name: notify task pass
+      debug:
+        msg: "PASS: module executes task!"
+      when: not check_task.failed
+
+    - name: notify task fail
+      debug:
+        msg: "FAIL: module failed to execute task"
+      when: check_task.failed
+
+    # exit test
+    - name: remove module
+      shell: rmmod void_hw
+      become: yes
+
+    - name: check exit
+      shell: dmesg | grep -q "yeeting complete."
+      become: yes
+      register: check_exit
+
+    - name: notify exit pass
+      debug:
+        msg: "PASS: module exits!"
+      when: not check_exit.failed
+
+    - name: notify init fail
+      debug:
+        msg: "FAIL: module failed to initialize"
+      when: check_exit.failed
