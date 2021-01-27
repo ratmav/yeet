@@ -136,9 +136,16 @@ _confirm target is running and accessbile via ssh keys._
 
 i had to do a little research along the way to learn about the linux kernel and how modules work:
 
-* kernel modules are written to be executed asynchronously and non-blocking, akin to node.js. the reason for this is that since the kernel ties harware to userspace, kernel modules and device drivers listen for interrupts from character devices (e.g. audio, keyboards, etc.) and block devices (pretty much disks), then process those interrupts accordingly. there are magic methods that essentially are hooks for stuff like module init, exit, and cleanup.
-* the c stdlib is for userspace, which makes sense. kernel modules work on ring 0, which is pretty much all root all the time, so you have to be extremely careful and write the most robust code possible. this means i can't just import the stdlib headers and loop in a main. however, there are kernel "stdlib" headers i can use; i just need to study them enough to solve the hw problem.
-* kthreads are neat: i can essentially just spawn a thread at the kernel level and pass a pointer to whatever function i want as the entrypoint. this is pretty similar to other languages i've used, but it's really cool to hang out in ring 0.
+* kernel modules are written to be executed asynchronously and non-blocking, akin to node.js. the reason for this is that since the kernel ties hardware to userspace, kernel modules and device drivers listen for interrupts from character devices (e.g. audio, keyboards, etc.) and block devices (pretty much disks), then process those interrupts accordingly. there are magic methods that essentially are hooks for stuff like module init, exit, and cleanup.
+* the c stdlib is for userspace, which makes sense. kernel modules work on ring 0, which is pretty much all root all the time, so you have to be extremely careful and write the most robust code possible. this means i can't just import the stdlib headers and run a loop in a main. however, there are kernel "stdlib" headers; you just have to find them.
+* kthreads are powerful: i can essentially just spawn a thread at the kernel level and pass a pointer to whatever function i want as the entrypoint. this is pretty similar to other languages i've used, but it's really cool to hang out in ring 0.
+
+### references
+
+* [build your own lisp](http://buildyourownlisp.com/contents): c refresher.
+* [linux kernel module programming - simplest example](https://sachithmuhandiram.medium.com/linux-kernel-module-programming-simplest-example-c45f2d1b32a7): hello world.
+* [writing a linux kernel module](http://derekmolloy.ie/writing-a-linux-kernel-module-part-1-introduction): more depth, like kthreads.
+* [module.h](https://github.com/torvalds/linux/blob/master/include/linux/module.h): kernel module api.
 
 ## notes
 
