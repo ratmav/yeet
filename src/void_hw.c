@@ -1,17 +1,10 @@
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/kernel.h>
-#include <linux/workqueue.h>
+#include <linux/kthread.h>
 
 MODULE_LICENSE("GPL");
 
-void workqueue_fn(struct work_struct *work);
-
-DECLARE_WORK(workqueue,workqueue_fn);
-
-void workqueue_fn(struct work_struct *work) {
-        printk(KERN_INFO "YEET\n");
-}
 
 static int __init yeet_init(void) {
  printk(KERN_INFO "preparing to yeet.\n");
