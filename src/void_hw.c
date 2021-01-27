@@ -13,7 +13,7 @@ static int yeet(void *arg) {
     set_current_state(TASK_RUNNING);
     set_current_state(TASK_INTERRUPTIBLE);
 
-    printk(KERN_INFO "YEET\n");
+    printk(KERN_INFO "(╯°□°）╯︵ ┻━┻\n");
 
     msleep(3000);
   }
