@@ -21,7 +21,6 @@ tasks:
       - ./bash/reset_target.sh
     silent: true
 
-  # TODO: make default, do build as a dep.
   test:
     deps: [build]
     cmds:
