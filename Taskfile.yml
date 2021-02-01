@@ -5,4 +5,5 @@ tasks:
     cmds:
       - vagrant destroy --force
       - vagrant up
+      - vagrant destroy --force
     silent: true
