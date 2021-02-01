@@ -1,5 +1,5 @@
 ---
-- hosts: void-hw
+- hosts: all
   tasks:
     # initialization test
     - name: check init
@@ -35,7 +35,7 @@
 
     # exit test
     - name: remove module
-      shell: rmmod void_hw
+      shell: rmmod yeet
       become: yes
 
     - name: check exit

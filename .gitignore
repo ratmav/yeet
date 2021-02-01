@@ -1,3 +1,7 @@
-*.iso
-SHA512SUMS*
+# ignore vagrant metadata
 .vagrant
+
+# only keep the module source, not the build artifacts.
+!src/yeet.c
+!src/Makefile
+src/*

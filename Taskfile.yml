@@ -1,34 +1,8 @@
 version: '3'
 
 tasks:
-  build:
-    deps: [reset_target]
-    cmds:
-      - ansible-playbook --inventory ./ansible/hosts.yml -l void-hw ./ansible/build.yml
-    silent: true
-
   default:
-    deps: [shutdown_target]
-    silent: true
-
-  get_debian:
     cmds:
-      - ./bash/get_debian.sh
-    silent: true
-
-  reset_target:
-    cmds:
-      - ./bash/reset_target.sh
-    silent: true
-
-  shutdown_target:
-    deps: [test]
-    cmds:
-      - VBoxManage controlvm void-hw acpipowerbutton
-    silent: true
-
-  test:
-    deps: [build]
-    cmds:
-      - ansible-playbook --inventory ./ansible/hosts.yml -l void-hw ./ansible/test.yml
+      - vagrant destroy --force
+      - vagrant up
     silent: true
