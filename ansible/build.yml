@@ -24,7 +24,7 @@
       become: yes
 
     - name: build module
-      ansible.builtin.shell: make
+      shell: make
       args:
         chdir: /vagrant/src
 
