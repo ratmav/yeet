@@ -7,14 +7,14 @@ yeet
 
 ## platform details
 
-* host: [macos](https://support.apple.com/guide/mac-help/welcome/mac) v11.1
+* host: [macos](https://support.apple.com/guide/mac-help/welcome/mac) (v11.1)
   * package management: [homebrew](https://docs.brew.sh/)
     * packages:
-        * [virtualbox](https://www.virtualbox.org/wiki/Documentation) - virtualization platform: `brew install --cask virtualbox`
-        * [vagrant](https://www.vagrantup.com/docs) - manage target vm: `brew install --cask vagrant`
-        * [ansible](https://docs.ansible.com/ansible/latest/index.html) - run tasks on target: `brew install ansible`
-        * [task](https://taskfile.dev/#/) - run tasks on host, like gnu make: `brew install go-task/tap/go-task`
-* target: [debian](https://www.debian.org/doc/) buster
+        * [virtualbox](https://www.virtualbox.org/wiki/Documentation) (v6.1.18) - virtualization platform: `brew install --cask virtualbox`
+        * [vagrant](https://www.vagrantup.com/docs) (v2.2.14)- manage target vm: `brew install --cask vagrant`
+        * [ansible](https://docs.ansible.com/ansible/latest/index.html) (v2.10.4) - run tasks on target: `brew install ansible`
+        * [task](https://taskfile.dev/#/) (v3.0.1) - run tasks on host, like gnu make: `brew install go-task/tap/go-task`
+* target: [debian](https://www.debian.org/doc/) (vbuster)
 
 ## workflow (n0)
 
