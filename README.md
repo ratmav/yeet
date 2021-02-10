@@ -1,8 +1,6 @@
 yeet
 ====
 
-[r&d skills exercise #1](https://docs.google.com/document/d/1U1PTHOdcUMUCC1rkcZGMazNkQCOCfjCV8aRPjYLxLEg/edit?ts=60073946)
-
 ![](https://upload.wikimedia.org/wikipedia/commons/9/96/Animated_glider_emblem.gif)
 
 ## platform details
@@ -16,9 +14,9 @@ yeet
         * [task](https://taskfile.dev/#/) (v3.0.1) - run tasks on host, like gnu make: `brew install go-task/tap/go-task`
 * target: [debian](https://www.debian.org/doc/) (vbuster)
 
-## workflow (n0)
+## workflow
 
-go-task is used as a convenience wrapper around vagrant commands to provision the target machine, build and test the kernel module, then teardown the target machine (n1). instead of three commands, developers can just run `task`, which will:
+go-task is used as a convenience wrapper around vagrant commands to provision the target machine, build and test the kernel module, then teardown the target machine (n0). instead of three commands, developers can just run `task`, which will:
 
 1. download a debian target machine image, if necessary
 1. provision the target machine (2 cpu, 4GB ram)
@@ -37,9 +35,7 @@ this provides developers with a clean, lean, robust, and easy to use development
 
 ## notes
 
-**n0**: **r&d and mvp code very often isn't, and doesn't need to be, production ready.** that said, a good development harness is often extremely useful and highly reusable.
-
-**n1**: rebuilding and reloading kernel modules on the fly with `modprobe` can be tricky. things like bios settings, etc. may have an impact, so automating the entire target provision-build-test-destroy loop seemed like the simplest and most reliable method. it may be worth researching a more elegant method; however, using a sledgehammer seems to work just fine.
+**n0**: rebuilding and reloading kernel modules on the fly with `modprobe` can be tricky. things like bios settings, etc. may have an impact, so automating the entire target provision-build-test-destroy loop seemed like the simplest and most reliable method. it may be worth researching a more elegant method; however, using a sledgehammer seems to work just fine.
 
 ### module implementation
 
