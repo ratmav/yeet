@@ -17,6 +17,7 @@ static int yeet(void *arg) {
 
     msleep(3000);
   }
+  return 0;
 }
 
 static int __init yeet_init(void) {
